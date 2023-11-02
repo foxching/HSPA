@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IProperty } from '../model/iproperty';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class HousingService {
   constructor(private httpClient: HttpClient) {}
 
-  getHousingProperties() {
-    return this.httpClient.get<any[]>('data/properties.json');
+  getHousingProperties(): Observable<IProperty[]> {
+    return this.httpClient.get<IProperty[]>('data/properties.json');
   }
 }

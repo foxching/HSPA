@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IProperty } from 'src/app/model/iproperty';
 import { HousingService } from 'src/app/service/housing.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { HousingService } from 'src/app/service/housing.service';
   styleUrls: ['./property-list.component.css'],
 })
 export class PropertyListComponent {
-  properties: any;
+  properties: IProperty[] = [];
   constructor(private housingService: HousingService) {}
 
   ngOnInit(): void {

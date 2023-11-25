@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IProperty } from 'src/app/model/iproperty';
 import { HousingService } from 'src/app/service/housing.service';
 
@@ -8,12 +9,20 @@ import { HousingService } from 'src/app/service/housing.service';
   styleUrls: ['./property-list.component.css'],
 })
 export class PropertyListComponent {
+  SellRent = 1;
   properties: IProperty[] = [];
-  constructor(private housingService: HousingService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private housingService: HousingService
+  ) {}
 
   ngOnInit(): void {
-    this.housingService.getHousingProperties().subscribe((data) => {
+    if (this.route.snapshot.url.toString()) {
+      this.SellRent = 2;
+    }
+    this.housingService.getHousingProperties(this.SellRent).subscribe((data) => {
       this.properties = data;
+      console.log(this.route.snapshot.url.toString());
     });
   }
 }

@@ -1,30 +1,39 @@
 [
     {
       "Id": 100,
+      "SellRent":2,
       "Name": "Rechie House",
       "Type": "House",
-      "Price": 1200
+      "Price": 1200,
+      "Image": "prop-1"
     },
     {
       "Id": 200,
+      "SellRent":2,
       "Name": "Ruth House",
       "Type": "Mansion",
-      "Price": 100200
+      "Price": 100200,
+      "Image": "prop-2"
     },
     {
       "Id": 300,
+      "SellRent":1,
       "Name": "Ryan House",
       "Type": "Duplex",
-      "Price": 9200
+      "Price": 9200,
+      "Image": "prop-3"
     },
     {
       "Id": 400,
+      "SellRent":1,
       "Name": "Cherry House",
       "Type": "Duplex",
-      "Price": 7700
+      "Price": 7700,
+      "Image": "prop-4"
     },
     {
       "Id": 500,
+      "SellRent":1,
       "Name": "Christian Jay House",
       "Type": "Duplex",
       "Price": 7200

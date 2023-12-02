@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, AbstractControl, ValidatorFn, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  AbstractControl,
+  ValidatorFn,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-user-register',
@@ -7,27 +15,30 @@ import { FormControl, FormGroup, ValidationErrors, AbstractControl, ValidatorFn,
   styleUrls: ['./user-register.component.css'],
 })
 export class UserRegisterComponent {
-  registrationForm: FormGroup;
+  registrationForm!: FormGroup;
 
-  constructor() {
-    this.registrationForm = new FormGroup({
-      username: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
-      confirmPassword: new FormControl(null, [Validators.required]),
-      mobile: new FormControl(null, [
-        Validators.required,
-        Validators.maxLength(10),
-      ]),
-    },{ validators: this.passwordMatchingValidator });
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.createRegisterationForm();
   }
 
-  ngOnInit() {}
+  createRegisterationForm() {
+    this.registrationForm = this.fb.group(
+      {
+        username: [null, Validators.required],
+        email: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(8)]],
+        confirmPassword: [null, Validators.required],
+        mobile: [null, [Validators.required, Validators.maxLength(10)]],
+      },
+      { validators: this.passwordMatchingValidator }
+    );
+  }
 
-  private passwordMatchingValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  private passwordMatchingValidator: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { notMatched: true };
@@ -53,11 +64,7 @@ export class UserRegisterComponent {
     return this.registrationForm.get('mobile') as FormControl;
   }
 
-  
-
-
   onSubmit() {
     console.log(this.registrationForm);
   }
-
 }

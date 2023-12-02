@@ -18,6 +18,7 @@ import { UserService } from 'src/app/service/user.service';
 export class UserRegisterComponent {
   registrationForm!: FormGroup;
   user: any = {};
+  isUserSubmitted : boolean = false;
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
@@ -67,8 +68,11 @@ export class UserRegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.registrationForm.value);
-    this.userService.addUser(this.registrationForm.value);
-    this.registrationForm.reset();
+    this.isUserSubmitted = true;
+    if (this.registrationForm.valid) {
+      this.userService.addUser(this.registrationForm.value);
+      this.registrationForm.reset();
+      this.isUserSubmitted = false;
+    }
   }
 }

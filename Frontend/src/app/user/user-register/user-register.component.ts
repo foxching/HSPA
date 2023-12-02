@@ -8,6 +8,7 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-user-register',
@@ -16,8 +17,9 @@ import {
 })
 export class UserRegisterComponent {
   registrationForm!: FormGroup;
+  user: any = {};
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit() {
     this.createRegisterationForm();
@@ -65,6 +67,8 @@ export class UserRegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.registrationForm);
+    console.log(this.registrationForm.value);
+    this.userService.addUser(this.registrationForm.value);
+    this.registrationForm.reset();
   }
 }

@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { User } from 'src/model/user';
+import { AlertyfyService } from 'src/app/service/alertyfy.service';
 
 @Component({
   selector: 'app-user-register',
@@ -19,9 +20,13 @@ import { User } from 'src/model/user';
 export class UserRegisterComponent {
   registrationForm!: FormGroup;
   user: User | undefined;
-  isUserSubmitted : boolean = false;
+  isUserSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private alertyfy: AlertyfyService
+  ) {}
 
   ngOnInit() {
     this.createRegisterationForm();
@@ -54,16 +59,19 @@ export class UserRegisterComponent {
       this.userService.addUser(this.userData());
       this.registrationForm.reset();
       this.isUserSubmitted = false;
+      this.alertyfy.success('Congrats, you are successfuly registered');
+    } else {
+      this.alertyfy.error('Kindly provide the required fields');
     }
   }
 
-  userData():User {
-    return this.user = {
-      username:this.userName.value,
-      email:this.email.value,
-      password:this.password.value,
-      mobile:this.mobile.value
-    }
+  userData(): User {
+    return (this.user = {
+      username: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      mobile: this.mobile.value,
+    });
   }
 
   // ------------------------------------
@@ -85,6 +93,4 @@ export class UserRegisterComponent {
   get mobile() {
     return this.registrationForm.get('mobile') as FormControl;
   }
-
-  
 }

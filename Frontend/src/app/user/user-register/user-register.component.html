@@ -4,7 +4,7 @@
       <div class="card-header">Register</div>
       <div class="card-body">
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-          <div class="form-group col-12">
+          <div class="mb-3 mt-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" formControlName="username"/>
             <span class="error-block" *ngIf="!userName.valid && (userName.touched || isUserSubmitted)">
@@ -12,7 +12,7 @@
             </span>
           </div>
 
-          <div class="form-group col-12">
+          <div class="mb-3 mt-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" formControlName="email" />
             <span class="error-block" *ngIf="!email.valid && (email.touched || isUserSubmitted)">
@@ -21,7 +21,7 @@
             </span>
           </div>
 
-          <div class="form-group col-12">
+          <div class="mb-3 mt-3">
             <label for="passwrod" class="form-label">Password</label>
             <input type="text" class="form-control" formControlName="password"/>
             <span class="error-block" *ngIf="!password.valid && (password.touched || isUserSubmitted)">
@@ -30,7 +30,7 @@
             </span>
           </div>
 
-          <div class="form-group col-12">
+          <div class="mb-3 mt-3">
             <label for="cpassword" class="form-label">Confirm Password</label>
             <input type="text" class="form-control" formControlName="confirmPassword" />
              <span class="error-block" *ngIf="!confirmPassword.valid && (confirmPassword.touched || isUserSubmitted)">
@@ -39,7 +39,7 @@
             <span class="error-block" *ngIf="registrationForm.hasError('notMatched') && confirmPassword.valid">Password not matched</span>
           </div>
 
-          <div class="form-group col-12">
+          <div class="mb-3 mt-3">
             <label for="mobile" class="form-label">Mobile</label>
             <input type="text" class="form-control" formControlName="mobile" />
             <span class="error-block" *ngIf="!mobile.valid && (mobile.touched || isUserSubmitted)">
@@ -48,8 +48,8 @@
             </span>
           </div>
 
-          <div class="form-group col-12 mt-2">
-            <button type="submit" class="btn btn-primary">Save</button>
+          <div class="d-flex gap-3 mb-3 mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
             <button type="reset" class="btn btn-secondary ml-2">Cancel</button>
           </div>
         </form>

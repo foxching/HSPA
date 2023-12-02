@@ -9,6 +9,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
+import { User } from 'src/model/user';
 
 @Component({
   selector: 'app-user-register',
@@ -17,7 +18,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserRegisterComponent {
   registrationForm!: FormGroup;
-  user: any = {};
+  user: User | undefined;
   isUserSubmitted : boolean = false;
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
@@ -47,6 +48,24 @@ export class UserRegisterComponent {
     return password === confirmPassword ? null : { notMatched: true };
   };
 
+  onSubmit() {
+    this.isUserSubmitted = true;
+    if (this.registrationForm.valid) {
+      this.userService.addUser(this.userData());
+      this.registrationForm.reset();
+      this.isUserSubmitted = false;
+    }
+  }
+
+  userData():User {
+    return this.user = {
+      username:this.userName.value,
+      email:this.email.value,
+      password:this.password.value,
+      mobile:this.mobile.value
+    }
+  }
+
   // ------------------------------------
   // Getter methods for all form controls
   // ------------------------------------
@@ -67,12 +86,5 @@ export class UserRegisterComponent {
     return this.registrationForm.get('mobile') as FormControl;
   }
 
-  onSubmit() {
-    this.isUserSubmitted = true;
-    if (this.registrationForm.valid) {
-      this.userService.addUser(this.registrationForm.value);
-      this.registrationForm.reset();
-      this.isUserSubmitted = false;
-    }
-  }
+  
 }

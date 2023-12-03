@@ -1,29 +1,61 @@
 <div class="card">
     <div class="card-header">
-        Add Property
+        List your property
     </div>
     <div class="card-body">
         <form (ngSubmit)="onSubmit()" #Form="ngForm">
-            <div class="mb-3 mt-3">
-                <label for="Name" class="form-label">Name</label>
-                <input type="text" class="form-control" #propName="ngModel" ngModel name="propName" required minlength="5">
-                <span *ngIf="!propName.valid && propName.touched" class="error-block">
-                    <span *ngIf="propName && propName.errors && propName.errors['required']">Please provide a name</span>
-                    <span *ngIf="propName && propName.errors && propName.errors['minlength']">Name must be at least 5 characters</span>
-                </span>
-            </div>
-            <div class="mb-3 mt-3">
-                <label for="Type"  class="form-label">Type</label>
-                <input type="text" class="form-control" ngModel name="propType">
-            </div>
-            <div class="mb-3 mt-3">
-                <label for="Price" class="form-label">Price</label>
-                <input type="text" class="form-control" ngModel name="propPrice">
-            </div>
-            <div class="d-flex gap-3 mb-3 mt-3">
-                <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
-                <button type="reset" class="btn btn-primary">Cancel</button>
-            </div>
+            <div>
+                <tabset  #formTabs>
+                  <tab heading="Basic Information">
+                    <div class="mb-3 mt-3">
+                        <label for="Name" class="form-label">Name</label>
+                        <input type="text" class="form-control" #propName="ngModel" ngModel name="propName" required minlength="5">
+                        <span *ngIf="!propName.valid && propName.touched" class="error-block">
+                            <span *ngIf="propName && propName.errors && propName.errors['required']">Please provide a name</span>
+                            <span *ngIf="propName && propName.errors && propName.errors['minlength']">Name must be at least 5 characters</span>
+                        </span>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="Type"  class="form-label">Type</label>
+                        <input type="text" class="form-control" ngModel name="propType">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="Price" class="form-label">Price</label>
+                        <input type="text" class="form-control" ngModel name="propPrice">
+                    </div>
+                    <div class="d-flex gap-3 mb-3 mt-3">
+                        <button type="button" (click)="selectTab(1)" class="btn btn-primary w-100">Next</button>
+                    </div>
+                  </tab>
+                  <tab heading="Pricing and Area">
+                    <div class="d-flex flex-column gap-2 mb-3 mt-3">
+                        <h1>Pricing and Area</h1>
+                        <button type="button" (click)="selectTab(0)" class="btn btn-primary w-100">Back</button>
+                        <button type="button" (click)="selectTab(2)" class="btn btn-primary w-100">Next</button>
+                    </div>
+                  </tab>
+                  <tab heading="Address">
+                    <div class="d-flex flex-column gap-2 mb-3 mt-3">
+                        <h1>Address</h1>
+                        <button type="button" (click)="selectTab(1)" class="btn btn-primary w-100">Back</button>
+                        <button type="button" (click)="selectTab(3)" class="btn btn-primary w-100">Next</button>
+                    </div>
+                  </tab>
+                  <tab heading="Other Details">
+                    <div class="d-flex flex-column gap-2 mb-3 mt-3">
+                        <h1>Other Details</h1>
+                        <button type="button" (click)="selectTab(2)" class="btn btn-primary w-100">Back</button>
+                        <button type="button" (click)="selectTab(4)" class="btn btn-primary w-100">Next</button>
+                    </div>
+                  </tab>
+                  <tab heading="Photos">
+                    <div class="d-flex flex-column gap-2 mb-3 mt-3">
+                        <h1>Photos</h1>
+                        <button type="button" (click)="selectTab(3)" class="btn btn-primary w-100">Back</button>
+                    </div>
+                  </tab>
+                </tabset>
+              </div>
         </form>
     </div>
 </div>

@@ -3,17 +3,17 @@
     <div class="card m-auto">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" >
           <div class="mb-3 mt-3">
             <label for="Name" class="form-label">Name</label>
-            <input class="form-control" required />
+            <input class="form-control" ngModel name="Name" required />
           </div>
           <div class="mb-3 mt-3">
             <label for="Password" class="form-label">Password</label>
-            <input class="form-control" required />
+            <input class="form-control"  ngModel name="Password"  required />
           </div>
           <div class="d-flex gap-3 mb-3 mt-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Submit</button>
             <button type="button" class="btn btn-secondary ml-2">Cancel</button>
           </div>
         </form>

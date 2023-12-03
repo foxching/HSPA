@@ -12,6 +12,9 @@ import { AddPropertyComponent } from './property/add-property/add-property.compo
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -33,7 +36,7 @@ const appRoutes: Routes = [
     UserLoginComponent,
     UserRegisterComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
+  imports: [BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes), BsDropdownModule.forRoot(), BrowserAnimationsModule, TabsModule.forRoot()],
   providers: [HousingService],
   bootstrap: [AppComponent],
 })

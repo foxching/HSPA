@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { IProperty } from 'src/app/model/iproperty';
+import { IPropertyBase } from 'src/app/model/ipropertybase';
 
 @Component({
   selector: 'app-add-property',
@@ -15,12 +15,17 @@ export class AddPropertyComponent {
 
   propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
   furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished'];
-  propertyView: IProperty = {
-    Id:0,
-    SellRent: 0,
+  propertyView: IPropertyBase= {
+    Id: null,
     Name: '',
-    Type: '',
-    Price: ''
+    Price: null,
+    SellRent: null,
+    PType: null,
+    FType: null,
+    BHK: null,
+    BuiltArea: null,
+    City: null,
+    RTM: null
   };
 
   constructor(private router: Router) {}

@@ -9,7 +9,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
-import { User } from 'src/model/user';
+import { User } from 'src/app/model/user';
 import { AlertyfyService } from 'src/app/service/alertyfy.service';
 
 @Component({

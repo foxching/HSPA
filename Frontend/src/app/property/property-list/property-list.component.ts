@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProperty } from 'src/app/model/iproperty';
 import { HousingService } from 'src/app/service/housing.service';
+import { IPropertyBase } from 'src/app/model/ipropertybase';
 
 @Component({
   selector: 'app-property-list',
@@ -10,7 +11,7 @@ import { HousingService } from 'src/app/service/housing.service';
 })
 export class PropertyListComponent {
   SellRent = 1;
-  properties: IProperty[] = [];
+  properties: IPropertyBase[] = [];
   constructor(
     private route: ActivatedRoute,
     private housingService: HousingService

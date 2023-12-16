@@ -15,6 +15,8 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -36,7 +38,18 @@ const appRoutes: Routes = [
     UserLoginComponent,
     UserRegisterComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes), BsDropdownModule.forRoot(), BrowserAnimationsModule, TabsModule.forRoot()],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
+    TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot()
+  ],
   providers: [HousingService],
   bootstrap: [AppComponent],
 })

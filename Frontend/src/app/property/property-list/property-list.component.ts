@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProperty } from 'src/app/model/iproperty';
 import { HousingService } from 'src/app/service/housing.service';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
+import { Property } from 'src/app/model/property';
 
 @Component({
   selector: 'app-property-list',
@@ -11,7 +12,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 })
 export class PropertyListComponent {
   SellRent = 1;
-  properties: IPropertyBase[] = [];
+  properties: Property[] = [];
   constructor(
     private route: ActivatedRoute,
     private housingService: HousingService
@@ -21,9 +22,19 @@ export class PropertyListComponent {
     if (this.route.snapshot.url.toString()) {
       this.SellRent = 2;
     }
-    this.housingService.getHousingProperties(this.SellRent).subscribe((data) => {
-      this.properties = data;
-      console.log(this.route.snapshot.url.toString());
-    });
+    this.housingService
+      .getHousingProperties(this.SellRent)
+      .subscribe((data) => {
+        this.properties = data;
+        // Check for a new property in local storage
+        const newProperty = JSON.parse(
+          localStorage.getItem('newProp') || 'null'
+        );
+
+        if (newProperty && newProperty.SellRent === this.SellRent) {
+          this.properties = [newProperty, ...this.properties];
+        }
+        
+      });
   }
 }

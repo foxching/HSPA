@@ -10,10 +10,10 @@ import { Property } from '../model/property';
 export class HousingService {
   constructor(private httpClient: HttpClient) {}
 
-  getHousingProperties(SellRent?: number): Observable<IProperty[]> {
-    return this.httpClient.get<IProperty[]>('data/properties.json').pipe(
+  getHousingProperties(SellRent?: number): Observable<Property[]> {
+    return this.httpClient.get<Property[]>('data/properties.json').pipe(
       map((data) => {
-        const propertiesArray: IProperty[] = [];
+        const propertiesArray: Property[] = [];
 
         for (const property of data) {
           if (SellRent !== undefined) {

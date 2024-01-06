@@ -15,6 +15,20 @@ export class HousingService {
       map((data) => {
         const propertiesArray: Property[] = [];
 
+        const storedProperties = localStorage.getItem('newProp')
+        if(storedProperties){
+          const convertedProperties = JSON.parse(storedProperties)
+          for (const property of convertedProperties) {
+            if (SellRent !== undefined) {
+              if (property.SellRent === SellRent) {
+                propertiesArray.push(property);
+              }
+            } else {
+              propertiesArray.push(property);
+            }
+          }
+        }
+       
         for (const property of data) {
           if (SellRent !== undefined) {
             if (property.SellRent === SellRent) {
@@ -29,7 +43,29 @@ export class HousingService {
       })
     );
   }
-  addProperty(property: Property) {
-    localStorage.setItem('newProp', JSON.stringify(property));
+  addProperty(property:Property) {
+    let newProp = [property];
+    const storedProperties = localStorage.getItem('newProp');
+  
+    if (storedProperties) {
+      const props = JSON.parse(storedProperties);
+      newProp = [property, ...props]; // Remove the extra array wrapping here
+    }
+  
+    localStorage.setItem('newProp', JSON.stringify(newProp));
   }
+  
+  newPropId() {
+    const pidValue = localStorage.getItem('PID');
+  
+    if (pidValue) {
+      const newPidValue = String(+pidValue + 1);
+      localStorage.setItem('PID', newPidValue);
+      return +newPidValue;
+    } else {
+      localStorage.setItem('PID', '101');
+      return 101;
+    }
+  }
+  
 }

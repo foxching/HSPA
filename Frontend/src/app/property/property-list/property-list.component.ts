@@ -26,15 +26,6 @@ export class PropertyListComponent {
       .getHousingProperties(this.SellRent)
       .subscribe((data) => {
         this.properties = data;
-        // Check for a new property in local storage
-        const newProperty = JSON.parse(
-          localStorage.getItem('newProp') || 'null'
-        );
-
-        if (newProperty && newProperty.SellRent === this.SellRent) {
-          this.properties = [newProperty, ...this.properties];
-        }
-        
       });
   }
 }
